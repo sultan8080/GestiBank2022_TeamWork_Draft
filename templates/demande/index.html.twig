@@ -16,26 +16,28 @@
 			<thead>
 				<tr align="center">
                 <th class="fw-bold">Id</th>
-                <th class="fw-bold">Nom</th>
-                <th class="fw-bold">Prenom</th>
+                <th class="fw-bold">Nom et Prénom</th>
+                {# <th class="fw-bold">Prenom</th> #}
                 <th class="fw-bold">Email</th>
-                <th class="fw-bold">Photo</th>
-                <th class="fw-bold">Identite</th>
+                {# <th class="fw-bold">Photo</th> #}
+                {# <th class="fw-bold">Identite</th> #}
                 <th class="fw-bold">Type</th>
                 <th class="fw-bold">Etat</th>
                 <th class="fw-bold">Datedemande</th>
                 {# <th class="fw-bold">actions</th> #}
+                <th class="fw-bold">Conseiller</th>
+                <th class="fw-bold">Affecter</th>
             </tr>
         </thead>
         <tbody>
         {% for demande in demandes %}
             <tr align="center">
                 <td>{{ demande.id }}</td>
-                <td>{{ demande.nom }}</td>
-                <td>{{ demande.prenom }}</td>
+                <td>{{ demande.nom }} {{ demande.prenom }}</td>
+                {# <td>{{ demande.prenom }}</td> #}
                 <td>{{ demande.email }}</td>
-                <td><img style="height:auto;width:20px;" src="{{asset('uploads/photos/'~ demande.photo ~'')}}"/></td>
-                <td><a href="{{asset('uploads/identites/'~ demande.identite ~'')}}" target="_blank">Telecharger</td>
+                {# <td><img style="height:auto;width:20px;" src="{{asset('uploads/photos/'~ demande.photo ~'')}}"/></td> #}
+                {# <td><a href="{{asset('uploads/identites/'~ demande.identite ~'')}}" target="_blank">Telecharger</td> #}
                 {# <td>{{ demande.photo }}</td>
                 <td>{{ demande.identite }}</td> #}
                 <td>{{ demande.type }}</td>
@@ -45,6 +47,8 @@
                     <a href="{{ path('app_demande_show', {'id': demande.id}) }}">show</a>
                     <a href="{{ path('app_demande_edit', {'id': demande.id}) }}">edit</a>
                 </td> #}
+                <td>conseiller</td>
+                <td>affecter</td>
             </tr>
         {% else %}
             <tr>
