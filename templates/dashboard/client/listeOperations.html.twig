@@ -1,0 +1,101 @@
+
+{% extends 'base_client.html.twig' %}
+{% block title %} Client dashboard{% endblock %}
+{% block mainboard %}
+        <div class="content-wrapper">
+						<div class="page-header">
+							<h3 class="page-title">
+								<span class="page-title-icon bg-gradient-primary text-white me-2">
+									<i class="mdi mdi-home"></i>
+								</span>
+								Mes Operations
+							</h3>
+						</div>
+						<div class="col-6 text-end mb-2">
+											<a class="btn btn-block btn btn-gradient-info me-2" href="{{path('app_dashboardClienNewTransaction')}}">
+								<span class="text-white">Faire une transaction</span>
+							</a>
+										</div>
+		<div class="row">
+						<div class=" grid-margin stretch-card">
+								<div class="card">
+									<div class="card-body">
+
+										<div class="clearfix">
+											
+										</p>
+										
+										<table class="table table-hover">
+											<thead>
+												<tr>
+													<th>Date</th>
+													<th>Debit</th>
+													<th>Credit</th>
+													<th>solde</th>
+												</tr>
+											</thead>
+											<tbody>
+
+											<tr>
+												<td>14/12/2022</td>
+												
+												<td class="text-danger">
+													100.00 €
+													<i class="mdi mdi-arrow-down"></i>
+												</td>
+												<td class="text-success">200.00 €
+												<i class="mdi mdi-arrow-up"></i></td>
+
+												<td>
+													<label class="badge badge-info"> 100.00 €</label>
+												</td>
+											</tr>
+											</tbody>
+										</table>
+
+
+									</div>
+
+								</div>
+						</div>
+			</div>
+						
+		</div>
+		<div class="row">
+							<div class="col-md-4 stretch-card grid-margin">
+								<div class="card bg-gradient-danger card-img-holder text-white">
+									<div class="card-body">
+										<img src="{{asset('client/images/dashboard/circle.svg')}}" class="card-img-absolute" alt="circle-image"/>
+										<h4 class="font-weight-normal mb-3">Débit total le mois dernier
+										</h4>
+										<h2 class="mb-5 text-dark">15,0000</h2>
+
+									</div>
+								</div>
+							</div>
+							<div class="col-md-4 stretch-card grid-margin">
+								<div class="card bg-gradient-info card-img-holder text-white">
+									<div class="card-body">
+										<img src="{{asset('client/images/dashboard/circle.svg')}}" class="card-img-absolute" alt="circle-image"/>
+										<h4 class="font-weight-normal mb-3">Crédit total le mois dernier
+										</h4>
+										<h2 class="mb-5 text-dark">45,6334</h2>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-4 stretch-card grid-margin">
+								<div class="card bg-gradient-success card-img-holder text-white">
+									<div class="card-body">
+										<img src="{{asset('client/images/dashboard/circle.svg')}}" class="card-img-absolute" alt="circle-image"/>
+										<h4 class="font-weight-normal mb-3">
+											Dernier solde
+										</h4>
+										<h2 class="mb-5 text-dark">95,5741</h2>
+									</div>
+								</div>
+							</div>
+						</div>	
+					
+{% endblock %}
+
+

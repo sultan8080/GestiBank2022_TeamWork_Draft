@@ -1,0 +1,66 @@
+{% extends 'base_admin.html.twig' %}
+
+
+{% block title %}Actualités{% endblock %}
+
+{% block body %}
+
+
+
+    <div class="page-wrapper">
+		<div class="page-breadcrumb">
+			<h1 class="text-center">
+				Actualités
+			</h1>
+		</div>
+
+		<div class="container-fluid">
+			<div class="text-end mb-3">
+				<a href="{{ path('app_actualites_new') }}" class="btn btn-primary">
+					Ajouter une Actualité</a>
+			</div>
+           
+			<table class="table table-hover">
+				<thead>
+					<tr align="center">
+                <th class="fw-bold">Id</th>
+                <th class="fw-bold">Contenu</th>
+                <th class="fw-bold">Date</th>
+                <th class="fw-bold">Auteur</th>
+                <th class="fw-bold">Image</th>
+                <th class="fw-bold">actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for actualite in actualites %}
+            <tr align="center">
+                <td>{{ actualite.id }}</td>
+                <td>{{ actualite.contenu }}</td>
+                <td>{{ actualite.date ? actualite.date|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ actualite.auteur }}</td>
+                <td>{{ actualite.image }}</td>
+                <td class="row" align="center">
+									
+									<span class="col-sm-4"><a href="{{ path('app_actualites_show', {'id': actualite.id}) }}" class="btn btn-info">Détails</a></span>
+									<span class="col-sm-4"><a href="{{ path('app_actualites_edit', {'id': actualite.id}) }}" class="btn btn-warning">Modifier</a></span>
+									{# <a href="{{ path('app_user_delete', {'id': user.id} )}}" class="btn btn-danger">Supprimer</a> #}
+									<span class="col-sm-4">{{ include('config/_delete_form.html.twig') }}</span>
+
+								</td>
+
+
+                {# <td>
+                    <a href="{{ path('app_actualites_show', {'id': actualite.id}) }}" class="btn btn-info">Détails</a>
+                    <a href="{{ path('app_actualites_edit', {'id': actualite.id}) }}" class="btn btn-warning">Modifier</a>
+                </td> #}
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_actualites_new') }}">Create new</a>
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}Liste des utilisateurs
+{% endblock %}
+
+{% block body %}
+	<div class="page-wrapper">
+		<div class="page-breadcrumb">
+			<h1 class="text-center">
+				Liste des utilisateurs
+			</h1>
+		</div>
+
+		<table class="table table-hover">
+			<thead>
+				<tr align="center">
+					<th class="fw-bold">Id</th>
+					<th class="fw-bold">Nom</th>
+					<th class="fw-bold">Prénom</th>
+					<th class="fw-bold">Email</th>
+					<th class="fw-bold">Telephone</th>
+					<th class="fw-bold">Adresse</th>
+					<th class="fw-bold">Roles</th>
+					<th class="fw-bold">Password</th>
+					{# <th>actions</th> #}
+				</tr>
+			</thead>
+			<tbody>
+				{% for user in users %}
+					<tr align="center">
+						<td>{{ user.id }}</td>
+						<td>{{ user.nom }}</td>
+						<td>{{ user.prenom }}</td>
+						<td>{{ user.email }}</td>
+						<td>{{ user.telephone }}</td>
+						<td>{{ user.adresse }}</td>
+						<td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+						<td>{{ user.password|u.truncate (10, '... ') }}</td>
+
+
+						{# <td>
+						                    <a href="{{ path('app_user_show', {'id': user.id}) }}">show</a>
+						                    <a href="{{ path('app_user_edit', {'id': user.id}) }}">edit</a>
+						                </td> #}
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="9">no records found</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+
+		{# <a href="{{ path('app_user_new') }}">Create new</a> #}
+	{% endblock %}
+

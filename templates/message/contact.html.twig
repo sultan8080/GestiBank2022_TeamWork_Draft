@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+{% block title %}Contact
+{% endblock %}
+{% block body %}
+
+
+	<!-- contact section start -->
+	<div class="contact_section layout_padding">
+		<div class="container-fluid">
+			<h1 class="what_taital">Contactez-nous</h1>
+			<p class="amet_text">
+				Veuillez renseigner votre Nom, Numéro de téléphone ainsi que votre Adresse mail avant de saisir votre message
+			</p>
+			<div class="contact_section2">
+				<div class="row justify-content-center align-items-center h-100">
+					<div class="col col-sm-6">
+						<div class="mail_section">
+							<form method="post">
+								<input type="" class="mail_text_1" placeholder="Nom" name="Nom">
+								<input type="" class="mail_text_1" placeholder="Telephone" name="Telephone">
+								<input type="" class="mail_text_1" placeholder="Email" name="Email">
+								<textarea class="massage_text" placeholder="Contenu" rows="5" id="comment" name="Contenu"></textarea>
+								<div class="send_bt">
+
+									<input type="submit">
+										<a href="{{path('app_accueil')}}">Envoyer</a>
+									</input>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- contact section end -->
+
+
+{% endblock %}
+

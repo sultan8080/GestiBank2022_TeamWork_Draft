@@ -1,0 +1,23 @@
+{% extends 'base_admin.html.twig' %}
+{% block title %}Modifier des services de banque
+{% endblock %}
+
+{% block body %}
+	<div class="page-wrapper">
+		<div class="page-breadcrumb">
+			<h1 class="text-center">
+				Modifier les services de banque
+			</h1>
+		</div>
+
+		<div class="container-fluid">
+
+			{{ include('bank_service/_form.html.twig', {'button_label': 'Modifier'}) }}
+
+			
+			<div class="text-center mt-2">
+				<a href="{{path('app_bank_service_index') }}">Retour à la liste</a>
+			</div>
+		</div>
+	</div>
+{% endblock %}

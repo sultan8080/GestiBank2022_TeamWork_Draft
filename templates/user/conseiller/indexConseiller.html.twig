@@ -1,0 +1,76 @@
+{% extends 'base_admin.html.twig' %}
+{% block title %}Liste des conseillers
+{% endblock %}
+
+{% block body %}
+	<div class="page-wrapper">
+		<div class="page-breadcrumb">
+			<h1 class="text-center">
+				Liste des conseillers
+			</h1>
+		</div>
+
+		<div class="container-fluid">
+			<div class="text-end mb-3">
+				<a href="{{ path('app_conseiller_new') }}" class="btn btn-primary">
+					Ajouter un Conseiller</a>
+			</div>
+
+			<table class="table table-hover">
+				<thead>
+					<tr align="center">
+						<th class="fw-bold" >Id</th>
+						<th class="fw-bold" align="center">Nom et prénom</th>
+						<th class="fw-bold" align="center">Email</th>
+						<th class="fw-bold" align="center">Téléphone</th>
+						<th class="fw-bold" align="center">Adresse</th>
+						<!--	<th>Role</th>-->
+						<th class="fw-bold" align="center">Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for user in users %}
+					{# {% if user.roles == ["ROLE_CONSEILLER","ROLE_USER"] %}
+					
+					 <tr>
+							<td class="">{{ user.id }}</td>
+							<td class="">{{ user.nom }} {{ user.prenom }}</td>
+							<td class="">{{ user.email }}</td>
+							<td class="">{{ user.telephone }}</td>
+							<td class="">{{ user.adresse }}</td>
+							<td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+							
+<<<<<<< HEAD
+						</tr>
+{% endif %}
+=======
+						</tr> 
+
+					{% endif %} #}
+						{% if 'ROLE_CONSEILLER' in user.roles	 %}
+
+							<tr align="center">
+								<td class="">{{ user.id }}</td>
+								<td class="">{{ user.nom }} {{ user.prenom }}</td>
+								<td class="">{{ user.email }}</td>
+								<td class="">{{ user.telephone }}</td>
+								<td class="">{{ user.adresse }}</td>
+								{# <td>{{ user.roles ? user.roles|json_encode : '' }}</td> #}
+
+
+								<td class="row" align="center">
+									
+									<span class="col-sm-4"><a href="{{ path('app_Conseiller_show', {'id': user.id}) }}" class="btn btn-info">Détails</a></span>
+									<span class="col-sm-4"><a href="{{ path('app_Conseiller_edit', {'id': user.id}) }}" class="btn btn-warning">Modifier</a></span>
+									{# <a href="{{ path('app_user_delete', {'id': user.id} )}}" class="btn btn-danger">Supprimer</a> #}
+									<span class="col-sm-4">{{ include('user/conseiller/deleteConseiller.html.twig') }}</span>
+
+								</td>
+							</tr>
+						{% endif %}
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+{% endblock %}

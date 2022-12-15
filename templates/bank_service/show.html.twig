@@ -1,0 +1,47 @@
+{% extends 'base_admin.html.twig' %}
+{% block title %}Services de banque
+{% endblock %}
+
+{% block body %}
+	<div class="page-wrapper">
+		<div class="page-breadcrumb">
+			<h1 class="text-center">
+				Modifier des offres de services
+			</h1>
+		</div>
+
+		<div class="container-fluid">
+
+			<table class="table table-hover">
+				<tbody>
+					<tr>
+						<th class="fw-bold">Id</th>
+						<td>{{ bank_service.id }}</td>
+					</tr>
+					<tr>
+						<th class="fw-bold">Titre</th>
+						<td>{{ bank_service.titre }}</td>
+					</tr>
+					<tr>
+						<th class="fw-bold">Description</th>
+						<td>{{ bank_service.description }}</td>
+					</tr>
+					<tr>
+						<th class="fw-bold">Logo</th>
+						<td class=""><img width="50 px" height="auto" height src="{{asset('uploads/logo_bs/'~ bank_service.logo ~'')}}" class="bg-dark" alt=" logo"/></td>
+
+
+					</tr>
+
+                   
+				</tbody>
+			</table>
+
+			<div class="d-flex justify-content-start align-items-center">
+				<div class="mx-1 px-3"> <a href="{{ path('app_bank_service_index') }}">Retour à la liste</a></div>
+				<div class="mx-1 px-3"><a href="{{ path('app_bank_service_edit', {'id': bank_service.id}) }}" class="btn btn-warning">Modifier</a> </div>
+				<div class="mx-1 px-3">{{ include('bank_service/_delete_form.html.twig') }} </div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

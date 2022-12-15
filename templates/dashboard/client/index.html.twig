@@ -1,0 +1,169 @@
+{% extends 'base_client.html.twig' %}
+
+{% block title %} Client dashboard{% endblock %}
+{% block mainboard %}
+        <div class="content-wrapper">
+						<div class="page-header">
+							<h3 class="page-title">
+								<span class="page-title-icon bg-gradient-primary text-white me-2">
+									<i class="mdi mdi-home"></i>
+								</span>
+								Tableau de bord
+							</h3>
+
+						</div>
+						<div class="row">
+							<div class="col-md-4 stretch-card grid-margin">
+								<div class="card bg-gradient-danger card-img-holder text-white">
+									<div class="card-body">
+										<img src="{{asset('client/images/dashboard/circle.svg')}}" class="card-img-absolute" alt="circle-image"/>
+										<h4 class="font-weight-normal mb-3">Débit total le mois dernier
+										</h4>
+										<h2 class="mb-5 text-dark">15,0000</h2>
+
+									</div>
+								</div>
+							</div>
+							<div class="col-md-4 stretch-card grid-margin">
+								<div class="card bg-gradient-info card-img-holder text-white">
+									<div class="card-body">
+										<img src="{{asset('client/images/dashboard/circle.svg')}}" class="card-img-absolute" alt="circle-image"/>
+										<h4 class="font-weight-normal mb-3">Crédit total le mois dernier
+										</h4>
+										<h2 class="mb-5 text-dark">45,6334</h2>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-4 stretch-card grid-margin">
+								<div class="card bg-gradient-success card-img-holder text-white">
+									<div class="card-body">
+										<img src="{{asset('client/images/dashboard/circle.svg')}}" class="card-img-absolute" alt="circle-image"/>
+										<h4 class="font-weight-normal mb-3">
+											Dernier solde
+										</h4>
+										<h2 class="mb-5 text-dark">95,5741</h2>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-7 grid-margin stretch-card">
+								<div class="card">
+									<div class="card-body">
+
+										<div class="clearfix">
+											<h4 class="card-title float-left">Mes opérations
+											</h4>
+										</p>
+										<table class="table table-hover">
+											<thead>
+												<tr>
+													<th>Date</th>
+													<th>Debit</th>
+													<th>Credit</th>
+													<th>solde</th>
+												</tr>
+											</thead>
+											<tbody>
+
+											<tr>
+												<td>14/12/2022</td>
+												
+												<td class="text-danger">
+													100.00 €
+													<i class="mdi mdi-arrow-down"></i>
+												</td>
+												<td class="text-success">200.00 €
+												<i class="mdi mdi-arrow-up"></i></td>
+
+												<td>
+													<label class="badge badge-info"> 100.00 €</label>
+												</td>
+											</tr>
+											</tbody>
+										</table>
+									</div>
+
+								</div>
+							</div>
+						</div>
+						<div class="col-md-5 grid-margin stretch-card">
+							<div class="card">
+								<div class="card-body">
+									<h4 class="card-title">Vos demandes
+									</h4>
+									<table class="table table-hover">
+										<thead>
+											<tr>
+												<th>Numéro Demande</th>
+												<th>Date de demande</th>
+												<th>Type de Compte</th>
+												<th> Status </th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+											<td>01</td>
+											<td>14/12/2022</td>
+											<td> Compte courant </td>
+											<td>
+													<label class="badge badge-danger">Pending</label>
+												</td>
+											</tr>
+
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-12 grid-margin">
+							<div class="card">
+								<div class="card-body">
+									<div class="row">
+
+
+										<h4 class=" col-6 card-title">Boites de réceptions
+										</h4>
+										<div class="col-6 text-end mb-2">
+
+										
+							
+							
+							<a class="btn btn-block btn btn-gradient-info me-2" href="{{path('app_dashboardClient_newMessage')}}">
+								<span class="text-white">Ecrire un nouveau message</span>
+							</a>
+						
+										
+										</div>
+									</div>
+
+									<div class="table-responsive">
+										<table class="table">
+											<table class="table table-hover">
+												<thead>
+													<tr>
+														<th>Objet</th>
+													<th>Contenu</th>
+													<th>Date</th>
+														
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td>Demande Info</td>
+														<td> Le lorem ipsum est, en imprimerie, une suite de mots sans signification utilisée à titre provisoire pour calibrer une mise en page, <br> le texte définitif venant remplacer le faux-texte dès qu'il est prêt ou que la mise en page est achevée. Généralement, <br> on utilise un texte en faux latin, le Lorem ipsum ou Lipsum.</td>
+														<td>
+															14/12/2022
+														</td>
+													</tr>
+												</tbody>
+											</table>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends 'base_admin.html.twig' %}
+{% block title %}Bank service
+{% endblock %}
+
+{% block body %}
+	<div class="page-wrapper">
+		<div class="page-breadcrumb">
+			<h1 class="text-center">
+				Nos offres de services
+			</h1>
+		</div>
+
+		<div class="container-fluid">
+			<div class="text-end mb-3">
+				<a href="{{ path('app_bank_service_new') }}" class="btn btn-primary">
+					Ajouter un offre de service</a>
+			</div>
+           
+			<table class="table table-hover">
+				<thead>
+					<tr align="center">
+						<th class="fw-bold">Id</th>
+						<th class="fw-bold">Titre</th>
+						<th class="fw-bold">Description</th>
+						<th class="fw-bold">Logo</th>
+						<th class="fw-bold">Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for bank_service in bank_services %}
+						<tr>
+							<td class="">{{ bank_service.id }}</td>
+							<td class="">{{ bank_service.titre }}</td>
+							<td class="col-6">{{ bank_service.description|u.truncate (180, '... ') }}</td>
+							{# <td>{{bank_service.logo}}</td> #}
+
+							<td class=""><img width="50 px" height="auto" height src="{{asset('uploads/logo_bs/'~ bank_service.logo ~'')}}" class="bg-dark" alt=" logo"/></td>
+
+							<td align="center">
+								<a href="{{ path('app_bank_service_show', {'id': bank_service.id}) }}" class="btn btn-info">Détails</a> 
+								<a href="{{ path('app_bank_service_edit', {'id': bank_service.id}) }}" class="btn btn-warning">Modifier</a>
+								<a href="{{ path('app_bank_service_delete', {'id': bank_service.id} )}}" class="btn btn-danger">Supprimer</a>
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+{% endblock %}

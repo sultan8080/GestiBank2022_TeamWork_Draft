@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+	Nos Offres
+{% endblock %}
+
+{% block body %}
+
+	<!--  section start -->
+	<div class="contact_section layout_padding">
+		<div class="container mt-5">
+				
+				<div class="icon_1 mt-5"><img src="{{asset('uploads/logo_bs/'~ bank_service.logo ~'')}}"></div>
+
+			<h1 class="what_taital mt-1">{{ bank_service.titre }}</h1>
+
+			<div class="jumbotron">
+				{# <hr class="my-5"> #}
+				<p class ="lead">{{ bank_service.description }}</p>
+				<p class="lead mt-5 text-center">
+					<a class="btn btn-secondary btn-lg" href="{{ path('app_bank_service_indexpublic') }}" role="button">
+						Retour aux services</a>
+				</p>
+			</div>
+
+		</div>
+	</div>
+<!--  section end -->{% endblock %}

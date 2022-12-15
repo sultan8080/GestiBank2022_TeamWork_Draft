@@ -1,0 +1,57 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}Détails Conseiller
+{% endblock %}
+
+{% block body %}
+	<div class="page-wrapper">
+		<div class="page-breadcrumb">
+			<h1 class="text-center">
+				Paramètres du conseiller
+			</h1>
+		</div>
+
+		<table class="table table-hover">
+
+			<tbody>
+				<tr>
+					<th class="fw-bold">Id</th>
+					<td>{{ user.id }}</td>
+				</tr>
+				<tr>
+					<th class="fw-bold">Nom</th>
+					<td>{{ user.nom }}</td>
+				</tr>
+				<tr>
+					<th class="fw-bold">Prenom</th>
+					<td>{{ user.prenom }}</td>
+				</tr>
+				<tr>
+					<th class="fw-bold">Email</th>
+					<td>{{ user.email }}</td>
+				</tr>
+				<tr>
+					<th class="fw-bold">Telephone</th>
+					<td>{{ user.telephone }}</td>
+				</tr>
+				<tr>
+					<th class="fw-bold">Adresse</th>
+					<td>{{ user.adresse }}</td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="d-flex justify-content-start align-items-center">
+			<span class="mx-1 px-3">
+				<a href="{{ path('app_conseillerListe') }}">Retour à la liste</a>
+			</span>
+			<span class="mx-1 px-3">
+				<a href="{{ path('app_Conseiller_edit', {'id': user.id}) }}" class="btn btn-warning">Modifier</a>
+			</span>
+			{# <a href="{{ path('app_user_delete', {'id': user.id} )}}" class="btn btn-danger">Supprimer</a> #}
+			<span class="mx-1 px-3">{{ include('user/conseiller/deleteConseiller.html.twig') }}</span>
+
+		</div>
+	</div>
+
+{% endblock %}
+

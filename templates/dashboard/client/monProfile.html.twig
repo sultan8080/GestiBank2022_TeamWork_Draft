@@ -1,0 +1,56 @@
+{% extends 'base_client.html.twig' %}
+
+{% block title %} Client dashboard{% endblock %}
+{% block mainboard %}
+        <div class="content-wrapper">
+						<div class="page-header">
+							<h3 class="page-title">
+								<span class="page-title-icon bg-gradient-primary text-white me-2">
+									<i class="mdi mdi-home"></i>
+								</span>
+Mon Profile							</h3>
+
+									
+										<div class="col-6 text-end mb-2">
+											<a class="btn btn-block btn btn-gradient-info me-2" href="{{path('app_dashboardClient_newMessage')}}">
+								<span class="text-white">Modifier votre mot de passe</span>
+							</a>
+										</div>
+								
+
+						</div>
+						
+						<div class="row">
+							<div class=" grid-margin stretch-card">
+								<div class="card">
+									<div class="card-body">
+
+										<div class="clearfix">
+											<h4 class="card-title float-left text-success"> Mes Coordonées
+											</h4>
+										</p>
+										
+											<table class="table table-hover">
+												
+													<tr>
+														<th>Nom</th>
+														<th>Prenom</th>
+													</tr>
+												
+												
+													<tr>
+														<td>Faith-Nelson</td>
+														<td> David <td>
+															</tr>
+											
+											</table>
+									
+									</div>
+
+								</div>
+							</div>
+						</div>
+						
+					</div>
+					
+{% endblock %}

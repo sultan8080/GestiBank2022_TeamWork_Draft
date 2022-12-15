@@ -1,0 +1,58 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}Demandes de compte
+{% endblock %}
+
+{% block body %}
+<div class="page-wrapper">
+		<div class="page-breadcrumb">
+			<h1 class="text-center">
+				Liste des demandes d'ouverture de compte
+			</h1>
+		</div>
+    
+
+    <table class="table table-hover">
+			<thead>
+				<tr align="center">
+                <th class="fw-bold">Id</th>
+                <th class="fw-bold">Nom</th>
+                <th class="fw-bold">Prenom</th>
+                <th class="fw-bold">Email</th>
+                <th class="fw-bold">Photo</th>
+                <th class="fw-bold">Identite</th>
+                <th class="fw-bold">Type</th>
+                <th class="fw-bold">Etat</th>
+                <th class="fw-bold">Datedemande</th>
+                {# <th class="fw-bold">actions</th> #}
+            </tr>
+        </thead>
+        <tbody>
+        {% for demande in demandes %}
+            <tr align="center">
+                <td>{{ demande.id }}</td>
+                <td>{{ demande.nom }}</td>
+                <td>{{ demande.prenom }}</td>
+                <td>{{ demande.email }}</td>
+                <td><img style="height:auto;width:20px;" src="{{asset('uploads/photos/'~ demande.photo ~'')}}"/></td>
+                <td><a href="{{asset('uploads/identites/'~ demande.identite ~'')}}" target="_blank">Telecharger</td>
+                {# <td>{{ demande.photo }}</td>
+                <td>{{ demande.identite }}</td> #}
+                <td>{{ demande.type }}</td>
+                <td>{{ demande.etat }}</td>
+                <td>{{ demande.datedemande ? demande.datedemande|date('Y-m-d H:i:s') : '' }}</td>
+                {# <td>
+                    <a href="{{ path('app_demande_show', {'id': demande.id}) }}">show</a>
+                    <a href="{{ path('app_demande_edit', {'id': demande.id}) }}">edit</a>
+                </td> #}
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="10">Auccune demande n'a été trouvée</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {# <a href="{{ path('app_demande_new') }}">Create new</a> #}
+{% endblock %}

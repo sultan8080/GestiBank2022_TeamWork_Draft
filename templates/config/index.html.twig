@@ -1,0 +1,41 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}Config index{% endblock %}
+
+{% block body %}
+            
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titre</th>
+                <th>Logo</th>
+                <th>Adresse</th>
+                <th>NumTel</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for config in configs %}
+            <tr>
+                <td>{{ config.id }}</td>
+                <td>{{ config.titre }}</td>
+                <td>{{ config.logo }}</td>
+                <td>{{ config.adresse }}</td>
+                <td>{{ config.numTel }}</td>
+                <td>
+                    <a href="{{ path('app_config_show', {'id': config.id}) }}">show</a>
+                    <a href="{{ path('app_config_edit', {'id': config.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_config_new') }}">Create new</a>
+{% endblock %}

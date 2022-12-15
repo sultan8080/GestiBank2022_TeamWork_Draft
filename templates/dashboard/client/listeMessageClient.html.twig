@@ -1,0 +1,90 @@
+{% extends 'base_client.html.twig' %}
+
+{% block title %} Client dashboard{% endblock %}
+{% block mainboard %}
+        <div class="content-wrapper">
+						<div class="page-header">
+							<h3 class="page-title">
+								<span class="page-title-icon bg-gradient-primary text-white me-2">
+									<i class="mdi mdi-home"></i>
+								</span>
+								Mes Messages
+							</h3>
+
+									
+										<div class="col-6 text-end mb-2">
+											<a class="btn btn-block btn btn-gradient-info me-2" href="{{path('app_dashboardClient_newMessage')}}">
+								<span class="text-white">Ecrire un nouveau message</span>
+							</a>
+										</div>
+								
+
+						</div>
+						
+						<div class="row">
+							<div class="col-md-6 grid-margin stretch-card">
+								<div class="card">
+									<div class="card-body">
+
+										<div class="clearfix">
+											<h4 class="card-title float-left text-success"> Inbox
+											</h4>
+										</p>
+										<table class="table">
+											<table class="table table-hover">
+												<thead>
+													<tr>
+														<th>Objet</th>
+													<th>Contenu</th>
+													<th>Date</th>
+														
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td>Demande Info</td>
+															<td> Contenu de Messages <td>
+														<td>
+															14/12/2022
+														</td>
+													</tr>
+												</tbody>
+											</table>
+										</table>
+									</div>
+
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6 grid-margin stretch-card">
+							<div class="card">
+								<div class="card-body">
+									<h4 class="card-title text-info"> Sent
+									</h4>
+									<table class="table">
+											<table class="table table-hover">
+												<thead>
+													<tr>
+														<th>Objet</th>
+													<th>Contenu</th>
+													<th>Date</th>
+														
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td>Demande Info</td>
+														<td> Contenu de Messages <td>
+														<td>
+															14/12/2022
+														</td>
+													</tr>
+												</tbody>
+											</table>
+										</table>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+{% endblock %}

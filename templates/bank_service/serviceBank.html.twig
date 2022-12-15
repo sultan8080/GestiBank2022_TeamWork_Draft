@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+	Nos Offres
+{% endblock %}
+
+{% block body %}
+
+	<!--  section start -->
+	<div class="contact_section layout_padding">
+		<div class="container">
+			<h1 class="what_taital">Tous Nos Offres</h1>
+			<p class="what_text">It is a long established fact that a reader will be distracted by the readable content of a
+			</p>
+			<div class="">
+				<div class="row">
+					{% for bank_service in bank_services %}
+						<div class="col-lg-3 col-sm-6 my-4">
+							<div class="box_main">
+								<div class="icon_1"><img src="{{asset('uploads/logo_bs/'~ bank_service.logo ~'')}}"></div>
+								<h3 class="accounting_text mt-2">{{ bank_service.titre }}</h3>
+								<p class="lorem_text">{{ bank_service.description|u.truncate (50, ' ...', false) }}</p>
+								<div class="moremore_bt_1">
+									<a href="{{ path('bank_service_detail', {'id': bank_service.id}) }}">								
+										En savoir plus
+									</a>
+								</div>
+							</div>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+<!--  section end -->{% endblock %}
