@@ -69,13 +69,13 @@ class RegistrationController extends AbstractController
         
 
         if ($form->isSubmitted() && $form->isValid()) {
-             $email = (new Email())
+            $email = (new Email())
             ->from('gk@smart-it-partner.com')
-            ->to($form->get('email')->getdata())
+            ->to('gharbi.mariem92@gmail.com')
             ->subject('Validation Création de compte')
-            ->html('<H2>Félicitation votre demande a été validé et votre compte est desormais actif</H2><br><h3>votre login est :</h3><br><h3>et votre mot de passe est :');
+            ->html('<H2>Félicitation votre demande a été validé et votre compte est desormais actif</H2>');
 
-        $mailer->send($email);
+            $mailer->send($email);
              // encode the plain password
             $user->setPassword(
                 $userPasswordHasher->hashPassword(
