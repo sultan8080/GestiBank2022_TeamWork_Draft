@@ -24,6 +24,7 @@
                 <th class="fw-bold">Type</th>
                 <th class="fw-bold">Etat</th>
                 <th class="fw-bold">Datedemande</th>
+                <th class="fw-bold">Conseiler affecté</th>
                 {# <th class="fw-bold">actions</th> #}
                 <th class="fw-bold">Conseiller</th>
                 <th class="fw-bold">Affecter</th>
@@ -43,12 +44,27 @@
                 <td>{{ demande.type }}</td>
                 <td>{{ demande.etat }}</td>
                 <td>{{ demande.datedemande ? demande.datedemande|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ demande.idConseiller ? demande.idConseiller : 'auccun' }}</td>
                 {# <td>
                     <a href="{{ path('app_demande_show', {'id': demande.id}) }}">show</a>
                     <a href="{{ path('app_demande_edit', {'id': demande.id}) }}">edit</a>
                 </td> #}
-                <td>conseiller</td>
-                <td>affecter</td>
+
+                <td>
+                <form action="{{path('app_demandeAffecter')}}" method="POST">
+                <input type="hidden" value="{{demande.id}}" name="iddemande"/> 
+                <select name="idConseiller" id="">
+
+                    {% for conseiller in conseillers %}
+                    
+                        <option value="{{conseiller.id}}">{{ conseiller.nom }} {{ conseiller.prenom }}</option>
+                    
+
+                    {% endfor %} 
+                </select></td>
+
+                <td><input class="col-sm-4" type="submit" value="Affecter"/></td>
+                </form>
             </tr>
         {% else %}
             <tr>

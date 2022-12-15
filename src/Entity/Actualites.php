@@ -17,8 +17,8 @@ class Actualites
     #[ORM\Column(length: 255)]
     private ?string $contenu = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $date = null;
+    // #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    // private ?\DateTimeInterface $date = null;
 
     #[ORM\Column(length: 255)]
     private ?string $auteur = null;
@@ -43,17 +43,17 @@ class Actualites
         return $this;
     }
 
-    public function getDate(): ?\DateTimeInterface
-    {
-        return $this->date;
-    }
+    // public function getDate(): ?\DateTimeInterface
+    // {
+    //     return $this->date;
+    // }
 
-    public function setDate(\DateTimeInterface $date): self
-    {
-        $this->date = $date;
+    // public function setDate(\DateTimeInterface $date): self
+    // {
+    //     $this->date = $date;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
     public function getAuteur(): ?string
     {

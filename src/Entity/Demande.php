@@ -42,6 +42,9 @@ class Demande
     #[ORM\JoinColumn(nullable: false)]
     private ?User $idUser = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?int $idConseiller = null;
+
     // #[ORM\Column]
     // private ?\DateTimeImmutable $dateDemande = null;
 
@@ -154,6 +157,18 @@ class Demande
     public function setIdUser(?User $idUser): self
     {
         $this->idUser = $idUser;
+
+        return $this;
+    }
+
+    public function getIdConseiller(): ?int
+    {
+        return $this->idConseiller;
+    }
+
+    public function setIdConseiller(?int $idConseiller): self
+    {
+        $this->idConseiller = $idConseiller;
 
         return $this;
     }

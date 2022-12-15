@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Demande;
 use App\Form\DemandeType;
 use App\Repository\DemandeRepository;
+use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping\Id;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,10 +17,12 @@ use Symfony\Component\HttpFoundation\File\Exception\FileException;
 class DemandeController extends AbstractController
 {
     #[Route('/', name: 'app_demande_index', methods: ['GET'])]
-    public function index(DemandeRepository $demandeRepository): Response
+    public function index(DemandeRepository $demandeRepository, UserRepository $userRepository): Response
     {
+
         return $this->render('demande/index.html.twig', [
             'demandes' => $demandeRepository->findAll(),
+            'conseillers' => $userRepository->findByRole("ROLE_CONSEILLER"),
         ]);
     }
 
@@ -93,6 +96,25 @@ class DemandeController extends AbstractController
     {
         return $this->render('demande/show.html.twig', [
             'demande' => $demande,
+        ]);
+    }
+    #[Route('/affectation', name: 'app_demandeAffecter', methods: ['GET', 'POST'])]
+    public function editAffecter(Request $request, DemandeRepository $demandeRepository): Response
+    {
+
+        if ($request->getMethod()=="POST") {
+            $iddemande = $request->get('iddemande');
+            $idConseiller = $request->get('idConseiller');
+            $demande = $demandeRepository->find($iddemande);
+            $demande->setIdConseiller($idConseiller);
+            $demandeRepository->save($demande, true);
+
+            return $this->redirectToRoute('app_demande_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('demande/affectation.html.twig', [
+            'demande' => $demande,
+            'form' => $form,
         ]);
     }
 
