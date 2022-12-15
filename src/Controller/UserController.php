@@ -49,6 +49,8 @@ class UserController extends AbstractController
             'form' => $form,
         ]);
     }
+
+    
     #[Route('/newConseiller', name: 'app_conseiller_new', methods: ['GET', 'POST'])]
     public function newConseiller(Request $request, UserRepository $userRepository): Response
     {
