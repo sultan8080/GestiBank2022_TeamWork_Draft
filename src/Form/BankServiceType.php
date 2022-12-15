@@ -19,7 +19,7 @@ class BankServiceType extends AbstractType
             ->add('titre')
             ->add('description')
             ->add('logo', FileType::class,[
-                'label' => "Télécharger le logo d'offre (png/jpg)'",
+                'label' => "Télécharger le logo d'offre de banque (png/jpg)'",
 
                 // unmapped means that this field is not associated to any entity property
                 'mapped' => false,
