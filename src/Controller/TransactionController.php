@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Transaction;
 use App\Form\TransactionType;
+use App\Repository\CompteRepository;
 use App\Repository\TransactionRepository;
 use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -23,11 +24,13 @@ class TransactionController extends AbstractController
     }
 
     #[Route('/NewTransaction', name: 'app_dashboardClienNewTransaction', methods: ['GET', 'POST'])]
-    public function new(Request $request, TransactionRepository $transactionRepository): Response
+    public function new(Request $request, CompteRepository $compteRepository, TransactionRepository $transactionRepository): Response
     {
         $transaction = new Transaction();
         $form = $this->createForm(TransactionType::class, $transaction);
         $form->handleRequest($request);
+        // $comptes = $compteRepository->findBy($this->getUser()->getId());
+        $comptes = $compteRepository->findBy(array('idUser' => $this->getUser()->getId()));
 
         if ($form->isSubmitted() && $form->isValid()) {
             // $transaction->setCreatedAt(new \DateTime());
@@ -39,6 +42,7 @@ class TransactionController extends AbstractController
         return $this->renderForm('dashboard/client/newTransaction.html.twig', [
             'transaction' => $transaction,
             'form' => $form,
+            'comptes' => $comptes,
         ]);
     }
 
