@@ -6,14 +6,16 @@ use doctrine;
 use App\Entity\User;
 
 use App\Entity\Demande;
-
+use App\Form\DemandeDecisionType;
 use App\Entity\Message;
 use App\Entity\BankService;
 use App\Entity\Transaction;
 use App\Repository\UserRepository;
 use App\Repository\CompteRepository;
+use App\Repository\DemandeRepository;
 use App\Repository\TransactionRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -111,10 +113,51 @@ class DashboardController extends AbstractController
 
     
     #[Route('/conseiller', name: 'app_dashboardConseiller')]
-    public function indexConseiller(): Response
+    public function indexConseiller(ManagerRegistry $doctrine,DemandeRepository $demandeRepository): Response
     {
+        $demande = $doctrine->getRepository(Demande::class)->findAll();
+        $user = $this->getUser()->getId();
+         if($demande) {
+            $demande = $demandeRepository->findBy(array('idConseiller' => $user));
+        }else{
+            $demande= null;
+         } 
         return $this->render('dashboard/indexConseiller.html.twig', [
-            'controller_name' => 'DashboardController',
+            //'controller_name' => 'DashboardController',
+            'ListeDemande' => $demande,
+        
+        ]);
+    }
+    // #[Route('/conseiller/decision', name: 'app_demandeDecision', methods: ['GET', 'POST'])]
+    // public function editDecision(Request $request, DemandeRepository $demandeRepository): Response
+    // {
+
+    //     if ($request->getMethod()=="POST") {
+    //         $etat = $request->get('etat');
+    //         $demande = $demandeRepository->find($etat);
+    //         $demande->setEtat($etat);
+    //         $demandeRepository->save($demande, true);
+
+    //         return $this->redirectToRoute('app_dashboardConseiller', [], Response::HTTP_SEE_OTHER);
+    //     }
+
+    //     return $this->render('dashboard/indexConseiller.html.twig', [
+    //         'ListeDemande' => $demande,
+    //     ]);
+    // }
+    #[Route('/conseiller/listeDemande', name: 'app_demandeConseiller')]
+    public function indexDemandeConseiller(ManagerRegistry $doctrine,DemandeRepository $demandeRepository): Response
+    {
+        $demande = $doctrine->getRepository(Demande::class)->findAll();
+        $user = $this->getUser()->getId();
+         if($demande) {
+            $demande = $demandeRepository->findBy(array('idConseiller' => $user));
+        }else{
+            $demande= null;
+         } 
+        return $this->render('demande/indexConseiller.html.twig', [
+            //'controller_name' => 'DashboardController',
+            'ListeDemande' => $demande,
         
         ]);
     }

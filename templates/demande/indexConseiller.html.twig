@@ -1,0 +1,62 @@
+{% extends 'base_conseiller.html.twig' %}
+
+{% block title %}Demandes de compte
+{% endblock %}
+
+{% block mainboard %}
+
+	<div class="table-responsive">
+
+		<table class="table table-hover">
+			<thead>
+				<tr
+					align="center">
+					{# <th class="fw-bold">Id</th> #}
+					<th class="fw-bold">Nom et Prénom</th>
+					{# <th class="fw-bold">Prenom</th> #}
+					<th class="fw-bold">Email</th>
+					{# <th class="fw-bold">Photo</th> #}
+					{# <th class="fw-bold">Identite</th> #}
+					<th class="fw-bold">Type</th>
+
+					<th class="fw-bold">Date de la demande</th>
+					{# <th class="fw-bold">Conseiler affecté</th> #}
+					{# <th class="fw-bold">actions</th> #}
+					<th class="fw-bold">Etat</th>
+					<th class="fw-bold">Validation</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for demande in ListeDemande %}
+					<tr
+						align="center">
+						{# <td>{{ demande.id }}</td> #}
+						<td>{{ demande.nom }}
+							{{ demande.prenom }}</td>
+						{# <td>{{ demande.prenom }}</td> #}
+						<td>{{ demande.email }}</td>
+						{# <td><img style="height:auto;width:20px;" src="{{asset('uploads/photos/'~ demande.photo ~'')}}"/></td> #}
+						{# <td><a href="{{asset('uploads/identites/'~ demande.identite ~'')}}" target="_blank">Telecharger</td> #}
+						{# <td>{{ demande.photo }}</td>
+						                <td>{{ demande.identite }}</td> #}<td>{{ demande.type }}
+						</td><td>{{ demande.datedemande ? demande.datedemande|date("m/d/Y") : '' }}
+						</td>
+						{# <td>{{ demande.idConseiller ? demande.idConseiller : 'auccun' }}</td> #}
+							<td>
+								<form action="{{path('app_demandeDecision')}}" method="POST"> <input type="hidden" value="{{demande.id}}" name="idDemande"/>
+								<select name="etat" id="">
+									<option value="-">{{ demande.etat }}</option>
+									<option value="acceptéé">acceptée</option>
+									<option value="refusée">refusée</option>
+								</select>
+							</td>
+
+							{# <td><input class="col-sm-4" type="submit" value="Affecter"/></td> #}
+						</td>
+						<td><input type="submit" value="Valider"/></td>
+					</tr>
+				</form>
+			{% endfor %}
+		</table>
+        </div>
+	{% endblock %}

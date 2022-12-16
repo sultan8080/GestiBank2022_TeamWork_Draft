@@ -4,9 +4,10 @@ namespace App\Controller;
 
 use App\Entity\Demande;
 use App\Form\DemandeType;
-use App\Repository\DemandeRepository;
-use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping\Id;
+use App\Repository\UserRepository;
+use App\Repository\DemandeRepository;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -23,6 +24,15 @@ class DemandeController extends AbstractController
         return $this->render('demande/index.html.twig', [
             'demandes' => $demandeRepository->findAll(),
             'conseillers' => $userRepository->findByRole("ROLE_CONSEILLER"),
+        ]);
+    }
+    #[Route('/conseillerDemande', name: 'app_demandeConseiller_index', methods: ['GET'])]
+    public function indexConseiller(DemandeRepository $demandeRepository, UserRepository $userRepository): Response
+    {
+
+        return $this->render('demande/indexConseiller.html.twig', [
+            'demandes' => $demandeRepository->findAll(),
+            //'conseillers' => $userRepository->findByRole("ROLE_CONSEILLER"),
         ]);
     }
 
@@ -115,6 +125,36 @@ class DemandeController extends AbstractController
         return $this->renderForm('demande/affectation.html.twig', [
             'demande' => $demande,
             'form' => $form,
+        ]);
+    }
+    #[Route('/demandeDecision', name: 'app_demandeDecision', methods: ['GET', 'POST'])]
+    public function editDecision(ManagerRegistry $doctrine,Request $request, DemandeRepository $demandeRepository): Response
+    {
+
+        if ($request->getMethod()=="POST") {
+            $etatDemande = $request->get('idDemande');
+            $etat = $request->get('etat');
+            // if($etat=='acceptée'){
+            //     $demande = $demandeRepository->findBy(array('idDemande' => $etatDemande));
+            // dd($demande);
+
+            // }elseif($etat=='refusée'){
+
+            // }
+            // $demande = $doctrine->getRepository(Demande::class)->findBy(array('idDemande' => $etatDemande));
+            $demande = $demandeRepository->findBy(array('id' => $etatDemande));
+            // dd($demande);
+            $objet = $demande[0];
+            $objet->setEtat($etat);
+
+            $demandeRepository->save($objet, true);
+
+            return $this->redirectToRoute('app_dashboardConseiller', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('dashboard/indexConseiller.html.twig', [
+            'ListeDemande' => $objet,
+            // 'form' => $form,
         ]);
     }
 
