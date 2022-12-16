@@ -59,14 +59,43 @@
 											<thead>
 												<tr>
 													<th>Date</th>
-													<th>Debit</th>
-													<th>Credit</th>
+													<th>Montant virement</th>
+													<th>Etat</th>
 													<th>solde</th>
 												</tr>
 											</thead>
 											<tbody>
-
-											<tr>
+											{% for item in transactions %}
+												<tr>
+												<td>{{item.createdAt|date('Y-m-d')}}</td>
+												{% if 'Débit' in item.type %}
+													<td class="text-danger">
+													{{item.montant}}
+													<i class="mdi mdi-arrow-down"></i>
+													</td>
+												{% else %}
+													<td class="text-success">
+													{{item.montant}}
+													<i class="mdi mdi-arrow-up"></i>
+												</td>
+												{% endif %}
+												<td class="text-success">{{item.etat}}
+												<i class="mdi mdi-arrow-up"></i></td>
+												{% if 'Débit' in item.type %}
+												
+												<td>
+													<label class="badge badge-info">{{compte[0].getSolde - item.montant}}</label>
+												</td>
+												{% else %}
+												<td>
+													<label class="badge badge-info">{{compte[0].getSolde + item.montant}}</label>
+												</td>
+												{% endif %}
+												
+											</tr>
+											{{item.type}}
+											{% endfor %}
+											{# <tr>
 												<td>14/12/2022</td>
 												
 												<td class="text-danger">
@@ -79,7 +108,7 @@
 												<td>
 													<label class="badge badge-info"> 100.00 €</label>
 												</td>
-											</tr>
+											</tr> #}
 											</tbody>
 										</table>
 									</div>

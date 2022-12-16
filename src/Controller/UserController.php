@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Controller;
-
+use Symfony\Component\Mime\Email;
 use App\Entity\User;
 use App\Form\UserType;
 use App\Form\UserNewType;
@@ -11,6 +11,7 @@ use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -60,7 +61,7 @@ class UserController extends AbstractController
 
     
     #[Route('/newConseiller', name: 'app_conseiller_new', methods: ['GET', 'POST'])]
-    public function newConseiller(UserPasswordHasherInterface $userPasswordHasher, Request $request, UserRepository $userRepository): Response
+    public function newConseiller(MailerInterface $mailer, UserPasswordHasherInterface $userPasswordHasher, Request $request, UserRepository $userRepository): Response
     {
         $user = new User();
         $form = $this->createForm(UserNewType::class, $user);
@@ -69,6 +70,13 @@ class UserController extends AbstractController
         
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $email = (new Email())
+            ->from('gk@smart-it-partner.com')
+            ->to($user->getEmail())
+            ->subject('Validation Création de compte')
+            ->html('<H2>Félicitation votre demande a été validé et votre compte est desormais actif</H2>');
+
+            $mailer->send($email);
             $user->setPassword(
                 $userPasswordHasher->hashPassword(
                     $user,
