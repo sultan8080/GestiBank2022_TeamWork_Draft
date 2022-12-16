@@ -1,0 +1,16 @@
+{{ form_start(form) }}
+    {{ form_widget(form) }}
+    {# {{ form_widget(form.etat) }} #}
+    <br>
+    <label> Choisir votre compte </label> <br>
+    <select class="w-25 mt-2">
+        {% for compte in comptes %}
+            <option value="{{compte.id}}">{{compte.id}} </option>
+        {% endfor %}
+    </select>
+    <div class="text-end">
+     <button class="btn btn-primary">{{ button_label|default('Valider') }}</button>
+</div>
+{{ form_end(form) }}
+
+

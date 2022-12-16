@@ -54,13 +54,13 @@ class DashboardController extends AbstractController
         ]);
     }
 
-    #[Route('/client/operations', name: 'app_dashboardClient_operations')]
-    public function indexClientOperations(): Response
-    {
-        return $this->render('dashboard/client/listeOperations.html.twig', [
-            // 'controller_name' => 'DashboardController',
-        ]);
-    }
+    // #[Route('/client/operations', name: 'app_dashboardClient_operations')]
+    // public function indexClientOperations(): Response
+    // {
+    //     return $this->render('dashboard/client/listeOperations.html.twig', [
+    //         // 'controller_name' => 'DashboardController',
+    //     ]);
+    // }
     // still not working
 
     #[Route('/client/listeDemande', name: 'app_dashboardClient_listDemandes')]
@@ -103,28 +103,15 @@ class DashboardController extends AbstractController
         ]);
     }
 
-    #[Route('/client/NewTransaction', name: 'app_dashboardClienNewTransaction')]
-    public function indexClientNewTransaction(): Response
-    {
-        return $this->render('dashboard/client/newTransaction.html.twig', [
-            // 'controller_name' => 'DashboardController',
-        ]);
-    }
+    // #[Route('/client/NewTransaction', name: 'app_dashboardClienNewTransaction')]
+    // public function indexClientNewTransaction(): Response
+    // {
+    //     return $this->render('dashboard/client/newTransaction.html.twig', [
+    //         // 'controller_name' => 'DashboardController',
+    //     ]);
+    // }
 
     
-
-    #[Route('/client/profile', name: 'app_dashboardClientProfile')]
-    public function indexClientNewProfile(): Response
-    {
-        return $this->render('dashboard/client/monProfile.html.twig', [
-            // 'controller_name' => 'DashboardController',
-        ]);
-    }
-
-
-
-
-
     #[Route('/conseiller', name: 'app_dashboardConseiller')]
     public function indexConseiller(ManagerRegistry $doctrine,DemandeRepository $demandeRepository): Response
     {
@@ -182,6 +169,36 @@ class DashboardController extends AbstractController
             'controller_name' => 'DashboardController',
             'ListeBankService' => $bankService,
         
+        ]);
+    }
+    
+ 
+    // public function indexClientNewProfile(): Response
+    // {
+    //     return $this->render('dashboard/client/monProfile.html.twig', [
+
+            
+    //         // 'controller_name' => 'DashboardController',
+    //     ]);
+    // }
+
+    #[Route('/client/profile', name: 'app_dashboardClientProfile')]
+    public function indexClientNewProfile(UserRepository $userRepository, CompteRepository $compteRepository): Response
+    {        
+        $user = $userRepository->findBy(array('id' => $this->getUser()->getId()));
+        $comptes = $compteRepository->findBy(array('idUser' => $this->getUser()->getId()));
+        // //  dd(count($comptes));
+        // $comp = [];
+        // for ($i=0; $i < count($comptes); $i++) {
+            
+        //     $comp[$i] = $comptes[$i]->getId();
+            
+        // }
+        // dd(count($comp));
+
+        return $this->render('dashboard/client/monProfile.html.twig', [
+                'user' => $user[0],
+                'comptes' => $comptes,
         ]);
     }
 }
