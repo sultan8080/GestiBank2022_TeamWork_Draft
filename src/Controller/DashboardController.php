@@ -52,13 +52,13 @@ class DashboardController extends AbstractController
         ]);
     }
 
-    #[Route('/client/operations', name: 'app_dashboardClient_operations')]
-    public function indexClientOperations(): Response
-    {
-        return $this->render('dashboard/client/listeOperations.html.twig', [
-            // 'controller_name' => 'DashboardController',
-        ]);
-    }
+    // #[Route('/client/operations', name: 'app_dashboardClient_operations')]
+    // public function indexClientOperations(): Response
+    // {
+    //     return $this->render('dashboard/client/listeOperations.html.twig', [
+    //         // 'controller_name' => 'DashboardController',
+    //     ]);
+    // }
     // still not working
 
     #[Route('/client/listeDemande', name: 'app_dashboardClient_listDemandes')]
@@ -101,13 +101,13 @@ class DashboardController extends AbstractController
         ]);
     }
 
-    #[Route('/client/NewTransaction', name: 'app_dashboardClienNewTransaction')]
-    public function indexClientNewTransaction(): Response
-    {
-        return $this->render('dashboard/client/newTransaction.html.twig', [
-            // 'controller_name' => 'DashboardController',
-        ]);
-    }
+    // #[Route('/client/NewTransaction', name: 'app_dashboardClienNewTransaction')]
+    // public function indexClientNewTransaction(): Response
+    // {
+    //     return $this->render('dashboard/client/newTransaction.html.twig', [
+    //         // 'controller_name' => 'DashboardController',
+    //     ]);
+    // }
 
     
 
