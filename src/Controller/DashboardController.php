@@ -39,11 +39,12 @@ class DashboardController extends AbstractController
         // $user = $this->getUser()->getId();
         $user = $this->getUser()->getId();
         $compte = $compteRepository->findBy(array('idUser' => $user));
-        $transaction = $transactionRepository->findBy(array('idCompte' => $compte[0]->getId()));
-        // $compte->getTransactions();
-        // echo("<br><br><br><br><br><br>".var_dump($user));
-        // dd($compte['0']['transaction']);
-        // dd($transaction);
+
+        if($compte){
+            $transaction = $transactionRepository->findBy(array('idCompte' => $compte[0]->getId()));
+        }else{
+            $transaction= null;
+        }
         return $this->render('dashboard/client/index.html.twig', [
             'compte' => $compte,
             'transactions' => $transaction,
