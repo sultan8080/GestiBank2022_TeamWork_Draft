@@ -46,9 +46,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'idUser', targetEntity: Demande::class)]
     private Collection $demandes;
 
+    #[ORM\OneToMany(mappedBy: 'idUser', targetEntity: Compte::class)]
+    private Collection $comptes;
+
     public function __construct()
     {
         $this->demandes = new ArrayCollection();
+        $this->comptes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -193,6 +197,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($demande->getIdUser() === $this) {
                 $demande->setIdUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Compte>
+     */
+    public function getComptes(): Collection
+    {
+        return $this->comptes;
+    }
+
+    public function addCompte(Compte $compte): self
+    {
+        if (!$this->comptes->contains($compte)) {
+            $this->comptes->add($compte);
+            $compte->setIdUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCompte(Compte $compte): self
+    {
+        if ($this->comptes->removeElement($compte)) {
+            // set the owning side to null (unless already changed)
+            if ($compte->getIdUser() === $this) {
+                $compte->setIdUser(null);
             }
         }
 

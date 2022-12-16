@@ -3,16 +3,20 @@
 namespace App\Controller;
 
 use doctrine;
-use App\Entity\Demande;
-
 use App\Entity\User;
 
+use App\Entity\Demande;
+
 use App\Entity\Message;
+use App\Entity\BankService;
+use App\Entity\Transaction;
+use App\Repository\UserRepository;
+use App\Repository\CompteRepository;
+use App\Repository\TransactionRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use App\Entity\BankService;
 
 class DashboardController extends AbstractController
 {
@@ -30,10 +34,19 @@ class DashboardController extends AbstractController
         ]);
     }
     #[Route('/client', name: 'app_dashboardClient')]
-    public function indexClient(): Response
+    public function indexClient(ManagerRegistry $doctrine,CompteRepository $compteRepository, TransactionRepository $transactionRepository): Response
     {
+        // $user = $this->getUser()->getId();
+        $user = $this->getUser()->getId();
+        $compte = $compteRepository->findBy(array('idUser' => $user));
+        $transaction = $transactionRepository->findBy(array('idCompte' => $compte[0]->getId()));
+        // $compte->getTransactions();
+        // echo("<br><br><br><br><br><br>".var_dump($user));
+        // dd($compte['0']['transaction']);
+        // dd($transaction);
         return $this->render('dashboard/client/index.html.twig', [
-            'controller_name' => 'DashboardController',
+            'compte' => $compte,
+            'transactions' => $transaction,
         
         ]);
     }
