@@ -26,6 +26,7 @@ class ActualitesController extends AbstractController
     {
         $actualite = new Actualites();
         $form = $this->createForm(ActualitesType::class, $actualite);
+        $actualite->setCreatedAt(new \DateTimeImmutable());
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

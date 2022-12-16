@@ -17,8 +17,9 @@ class Actualites
     #[ORM\Column(length: 255)]
     private ?string $contenu = null;
 
-    // #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    // private ?\DateTimeInterface $date = null;
+    
+    #[ORM\Column]
+    private ?\DateTimeImmutable $CreatedAt = null;
 
     #[ORM\Column(length: 255)]
     private ?string $auteur = null;
@@ -39,6 +40,17 @@ class Actualites
     public function setContenu(string $contenu): self
     {
         $this->contenu = $contenu;
+
+        return $this;
+    }
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->CreatedAt;
+    }
+
+    public function setCreatedAt(\DateTimeImmutable $CreatedAt): self
+    {
+        $this->CreatedAt = $CreatedAt;
 
         return $this;
     }

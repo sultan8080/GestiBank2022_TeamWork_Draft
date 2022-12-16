@@ -36,7 +36,7 @@
             <tr align="center">
                 <td>{{ actualite.id }}</td>
                 <td>{{ actualite.contenu }}</td>
-                <td>{{ actualite.date ? actualite.date|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ actualite.createdAt ? actualite.createdAt|date("m/d/Y") : '' }}</td>
                 <td>{{ actualite.auteur }}</td>
                 <td>{{ actualite.image }}</td>
                 <td class="row" align="center">
@@ -44,7 +44,7 @@
 									<span class="col-sm-4"><a href="{{ path('app_actualites_show', {'id': actualite.id}) }}" class="btn btn-info">Détails</a></span>
 									<span class="col-sm-4"><a href="{{ path('app_actualites_edit', {'id': actualite.id}) }}" class="btn btn-warning">Modifier</a></span>
 									{# <a href="{{ path('app_user_delete', {'id': user.id} )}}" class="btn btn-danger">Supprimer</a> #}
-									<span class="col-sm-4">{{ include('config/_delete_form.html.twig') }}</span>
+									<span class="col-sm-4">{{ include('actualites/_delete_form.html.twig') }}</span>
 
 								</td>
 
@@ -56,11 +56,9 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="6">no records found</td>
+                <td colspan="6">auccune actualité n'a été trouvée</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('app_actualites_new') }}">Create new</a>
 {% endblock %}
