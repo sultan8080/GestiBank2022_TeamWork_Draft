@@ -65,36 +65,52 @@
 												</tr>
 											</thead>
 											<tbody>
-											{% for item in transactions %}
-												<tr>
-												<td>{{item.createdAt|date('Y-m-d')}}</td>
-												{% if 'Débit' in item.type %}
-													<td class="text-danger">
-													{{item.montant}}
-													<i class="mdi mdi-arrow-down"></i>
+											{% if transactions %}
+												{% for item in transactions %}
+													<tr>
+													<td>{{item.createdAt|date('Y-m-d')}}</td>
+													{% if 'Débit' in item.type %}
+														<td class="text-danger">
+														{{item.montant}}
+														<i class="mdi mdi-arrow-down"></i>
+														</td>
+													{% else %}
+														<td class="text-success">
+														{{item.montant}}
+														<i class="mdi mdi-arrow-up"></i>
 													</td>
-												{% else %}
+													{% endif %}
+													<td class="text-success">{{item.etat}}
+													<i class="mdi mdi-arrow-up"></i></td>
+													{% if 'Débit' in item.type %}
+													
+													<td>
+														<label class="badge badge-info">{{compte[0].getSolde - item.montant}}</label>
+													</td>
+													{% else %}
+													<td>
+														<label class="badge badge-info">{{compte[0].getSolde + item.montant}}</label>
+													</td>
+													{% endif %}
+													
+												</tr>
+												{{item.type}}
+												{% endfor %}
+
+											{% else %}
+												<tr>
+													<td> - </td>
+													
+													<td class="text-danger">
+														0 	
+													</td>
 													<td class="text-success">
-													{{item.montant}}
-													<i class="mdi mdi-arrow-up"></i>
-												</td>
-												{% endif %}
-												<td class="text-success">{{item.etat}}
-												<i class="mdi mdi-arrow-up"></i></td>
-												{% if 'Débit' in item.type %}
-												
-												<td>
-													<label class="badge badge-info">{{compte[0].getSolde - item.montant}}</label>
-												</td>
-												{% else %}
-												<td>
-													<label class="badge badge-info">{{compte[0].getSolde + item.montant}}</label>
-												</td>
-												{% endif %}
-												
-											</tr>
-											{{item.type}}
-											{% endfor %}
+														0
+													<td>
+														<label class="badge badge-info"> 0€ </label>
+													</td>
+												</tr>
+											{% endif %}
 											{# <tr>
 												<td>14/12/2022</td>
 												
