@@ -110,10 +110,12 @@ class DashboardController extends AbstractController
 
 
     #[Route('/conseiller', name: 'app_dashboardConseiller')]
-    public function indexConseiller(): Response
+    public function indexConseiller(ManagerRegistry $doctrine): Response
     {
+        //$demande = $doctrine->getRepository(Demande::class)->findAll();
         return $this->render('dashboard/indexConseiller.html.twig', [
             'controller_name' => 'DashboardController',
+            //'listedemande' => $demande,
         
         ]);
     }
