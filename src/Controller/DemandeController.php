@@ -2,10 +2,12 @@
 
 namespace App\Controller;
 
+use App\Entity\Compte;
 use App\Entity\Demande;
 use App\Form\DemandeType;
 use Doctrine\ORM\Mapping\Id;
 use App\Repository\UserRepository;
+use App\Repository\CompteRepository;
 use App\Repository\DemandeRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
@@ -128,27 +130,42 @@ class DemandeController extends AbstractController
         ]);
     }
     #[Route('/demandeDecision', name: 'app_demandeDecision', methods: ['GET', 'POST'])]
-    public function editDecision(ManagerRegistry $doctrine,Request $request, DemandeRepository $demandeRepository): Response
+    public function editDecision(ManagerRegistry $doctrine,Request $request,UserRepository $userRepository, DemandeRepository $demandeRepository, CompteRepository $compteRepository): Response
     {
 
         if ($request->getMethod()=="POST") {
             $etatDemande = $request->get('idDemande');
             $etat = $request->get('etat');
-            // if($etat=='acceptée'){
-            //     $demande = $demandeRepository->findBy(array('idDemande' => $etatDemande));
+            $idConseiller=$request->get('idConseiller');
+            $type=$request->get('type');
+            
+            //$idUser=$request->get('idUSer');
+            //dd($request->request->get('idUser'));
+           $demande = $demandeRepository->findBy(array('id' => $etatDemande));
+            //  if($etat=='acceptée'){
+                $compte=new Compte();
+                $compte->setIdConseiller($idConseiller);
+                //$compte->setType($type);
+                $client= $userRepository->find($request->request->get('idUser'));
+                
+                $compte->setIdUser($client);
+                $compte->setSolde(0.00);
+                $compte->setCreateddAt(new \DateTimeImmutable());
+                $compteRepository->save($compte, true);
+             //}
             // dd($demande);
 
             // }elseif($etat=='refusée'){
 
             // }
             // $demande = $doctrine->getRepository(Demande::class)->findBy(array('idDemande' => $etatDemande));
-            $demande = $demandeRepository->findBy(array('id' => $etatDemande));
+            //$demande = $demandeRepository->findBy(array('id' => $etatDemande));
             // dd($demande);
             $objet = $demande[0];
             $objet->setEtat($etat);
 
             $demandeRepository->save($objet, true);
-
+            
             return $this->redirectToRoute('app_dashboardConseiller', [], Response::HTTP_SEE_OTHER);
         }
 

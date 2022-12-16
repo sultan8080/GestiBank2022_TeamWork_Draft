@@ -43,7 +43,11 @@
 						</td>
 						{# <td>{{ demande.idConseiller ? demande.idConseiller : 'auccun' }}</td> #}
 							<td>
-								<form action="{{path('app_demandeDecision')}}" method="POST"> <input type="hidden" value="{{demande.id}}" name="idDemande"/>
+								<form action="{{path('app_demandeDecision')}}" method="POST"> 
+								<input type="hidden" value="{{demande.id}}" name="idDemande"/>
+								<input type="hidden" value="{{demande.idConseiller}}" name="idConseiller"/>
+								<input type="hidden" value="{{demande.type}}" name="typeDemande"/>
+								<input type="hidden" value="{{demande.idUser.id}}" name="idUser"/>
 								<select name="etat" id="">
 									<option value="-">{{ demande.etat }}</option>
 									<option value="acceptéé">acceptée</option>
