@@ -33,17 +33,19 @@ class ConfigController extends AbstractController
 
             $logoFile = $form->get('logo')->getData();
             if($logoFile){
-                $originalfilename = pathinfo($logoFile->getClientOriginalName(), PATHINFO_FILENAME);
+                // $originalfilename = pathinfo($logoFile->getClientOriginalName(), PATHINFO_FILENAME);
+                $localFile = "logo-text";
+                $newLogoFilename = $localFile.'.'.$logoFile->guessExtension();
                 try {
                     //code...
-                    $logoFile->move($this->getParameter('logo_directory'),$originalfilename);
+                    $logoFile->move($this->getParameter('logo_directory'),$newLogoFilename);
                 } catch (FileException $e) {
                     //throw $th;
                 }
 
                 
             }
-            $config->setLogo($originalfilename);
+            $config->setLogo($newLogoFilename);
 
             $configRepository->save($config, true);
 
