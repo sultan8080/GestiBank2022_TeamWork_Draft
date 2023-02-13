@@ -1,9 +1,15 @@
 {% extends 'base.html.twig' %}
 {% block title %}Accueil
 {% endblock %}
+
+{% block linkCSS %}
+	<link rel="stylesheet" href="{{asset('css/currency.css')}}">
+{% endblock %}
+
 {% block body %}
 	<!--about section start -->
-		<div class="services_section layout_padding"> <div class="container">
+	<div class="services_section layout_padding">
+		<div class="container">
 			<div class="row">
 				<div class="col-md-8">
 					<h1 class="services_taital">Bienvenue</h1>
@@ -30,8 +36,8 @@
 			<div class="what_we_do_section_2">
 				<div class="row">
 					{% for bank_service in ListeBankService %}
-						<div class="col-lg-3 col-sm-6 my-4">	
-								<div class="box_main">
+						<div class="col-lg-3 col-sm-6 my-4">
+							<div class="box_main">
 								<div class="icon_1"><img src="{{asset('uploads/logo_bs/'~ bank_service.logo ~'')}}"></div>
 								<h3 class="accounting_text mt-2">{{ bank_service.titre }}</h3>
 								<p class="lorem_text">{{ bank_service.description|u.truncate (50, ' ...', false) }}</p>
@@ -47,196 +53,263 @@
 			</div>
 		</div>
 	</div>
-	<!--services section end -->
-	<!--project section start -->
-	<div class="project_section layout_padding">
+
+
+	<div id="conversion-section" class="services_section layout_padding">
 		<div class="container">
-			<div class="row">
-				<div class="col-md-6">
-					<div class="project_main">
-						<h1 class="services_taital">Nos projets</h1>
-						<p class="services_text">It is a long established fact that a reader will be distracted by the readable content of a
+			<div class="row justify-content-between">
+				<div class="col-md-4">
+					<h1 class="services_taital">Conversion de devises</h1>
+					<p class="services_text">
+						Merci d'indiquer la devise départ 						et
+						<span>la devise d'arrivée</span>
+						ainsi que
+						<span>le montant à convertir
 						</p>
 						<div class="moremore_bt">
 							<a href="#">Voir plus
 							</a>
 						</div>
-						<div class="image_6"><img src="images/img-6.png"></div>
-					</div>
+					</p>
 				</div>
 				<div class="col-md-6">
-					<div class="images_main">
-						<div class="images_left">
-							<div class="container_1">
-								<img src="images/img-2.png" alt="Avatar" class="image" style="width:100%">
-								<div class="middle">
-									<div class="text"><img src="images/search-icon.png"></div>
-									<h2 class="fact_text">Established Fact</h2>
+
+					<form action="#">
+						<div class="amount">
+							<p>Montant à convertir:</p>
+							<input type="text" value="1">
+						</div>
+						<div class="drop-list">
+							<div class="from">
+								<p>De</p>
+								<div class="select-box">
+									<img src="https://flagcdn.com/48x36/fr.png" alt="flag">
+									<select>
+										<!-- Options tag are inserted from JavaScript -->
+									</select>
 								</div>
 							</div>
-							<div class="container_1">
-								<img src="images/img-3.png" alt="Avatar" class="image" style="width:100%">
-								<div class="middle">
-									<div class="text"><img src="images/search-icon.png"></div>
-									<h2 class="fact_text">Established Fact</h2>
+							<div class="icon">
+								<i class="fas fa-exchange-alt"></i>
+							</div>
+							<div class="to">
+								<p>À</p>
+								<div class="select-box">
+									<img src="https://flagcdn.com/48x36/us.png" alt="flag">
+									<select>
+										<!-- Options tag are inserted from JavaScript -->
+									</select>
 								</div>
 							</div>
 						</div>
-						<div class="images_right">
-							<div class="container_1">
-								<img src="images/img-4.png" alt="Avatar" class="image" style="width:100%">
-								<div class="middle">
-									<div class="text"><img src="images/search-icon.png"></div>
-									<h2 class="fact_text">Established Fact</h2>
+						<div class="exchange-rate">Conversion en cours veuillez patienter...</div>
+						<button id="convertir">Obtenir le taux de change</button>
+						<small class="text-center">
+							Taux de change d'aujourd'hui :
+							<strong>
+								{{ "now"|date("d/m/Y") }}
+								<strong></small>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			{# API gratuit end #}
+
+
+			<!--services section end -->
+			<!--project section start -->
+				<div class="project_section layout_padding"> <div class="container">
+					<div class="row">
+						<div class="col-md-6">
+							<div class="project_main">
+								<h1 class="services_taital">Nos projets</h1>
+								<p class="services_text">It is a long established fact that a reader will be distracted by the readable content of a
+								</p>
+								<div class="moremore_bt">
+									<a href="#">Voir plus
+									</a>
 								</div>
+								<div class="image_6"><img src="images/img-6.png"></div>
 							</div>
-							<div class="container_1">
-								<img src="images/img-5.png" alt="Avatar" class="image" style="width:100%">
-								<div class="middle">
-									<div class="text"><img src="images/search-icon.png"></div>
-									<h2 class="fact_text">Established Fact</h2>
+						</div>
+						<div class="col-md-6">
+							<div class="images_main">
+								<div class="images_left">
+									<div class="container_1">
+										<img src="images/img-2.png" alt="Avatar" class="image" style="width:100%">
+										<div class="middle">
+											<div class="text"><img src="images/search-icon.png"></div>
+											<h2 class="fact_text">Established Fact</h2>
+										</div>
+									</div>
+									<div class="container_1">
+										<img src="images/img-3.png" alt="Avatar" class="image" style="width:100%">
+										<div class="middle">
+											<div class="text"><img src="images/search-icon.png"></div>
+											<h2 class="fact_text">Established Fact</h2>
+										</div>
+									</div>
+								</div>
+								<div class="images_right">
+									<div class="container_1">
+										<img src="images/img-4.png" alt="Avatar" class="image" style="width:100%">
+										<div class="middle">
+											<div class="text"><img src="images/search-icon.png"></div>
+											<h2 class="fact_text">Established Fact</h2>
+										</div>
+									</div>
+									<div class="container_1">
+										<img src="images/img-5.png" alt="Avatar" class="image" style="width:100%">
+										<div class="middle">
+											<div class="text"><img src="images/search-icon.png"></div>
+											<h2 class="fact_text">Established Fact</h2>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-	</div>
-	<div class="project_section_2 layout_padding">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-3 col-sm-6">
-					<div class="icon_1"><img src="images/icon-3.png"></div>
-					<h3 class="accounting_text_1">1000+</h3>
-					<p class="yers_text">Years of Business</p>
-				</div>
-				<div class="col-lg-3 col-sm-6">
-					<div class="icon_1"><img src="images/icon-4.png"></div>
-					<h3 class="accounting_text_1">20000+</h3>
-					<p class="yers_text">Projects Delivered</p>
-				</div>
-				<div class="col-lg-3 col-sm-6">
-					<div class="icon_1"><img src="images/icon-2.png"></div>
-					<h3 class="accounting_text_1">10000+</h3>
-					<p class="yers_text">Satisfied Customers</p>
-				</div>
-				<div class="col-lg-3 col-sm-6">
-					<div class="icon_1"><img src="images/icon-1.png"></div>
-					<h3 class="accounting_text_1">1500+</h3>
-					<p class="yers_text">Services</p>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!--project section end -->
-	<!--team section start -->
-	<div class="team_section layout_padding">
-		<div class="container">
-			<h1 class="what_taital">Notre groupe</h1>
-			<p class="what_text_1">It is a long established fact that a reader will be distracted by the readable content of a
-			</p>
-			<div class="team_section_2 layout_padding">
-				<div class="row">
-					<div class="col-sm-3">
-						<img src="images/img-7.png" class="image_7">
-						<p class="readable_text">Readable</p>
-						<p class="readable_text_1">suivez-nous</p>
-						<div class="social_icon">
-							<ul>
-								<li><a href="#"><img src="images/fb-icon.png"></a></li>
-								<li><a href="#"><img src="images/twitter-icon.png"></a></li>
-								<li><a href="#"><img src="images/linkedin-icon.png"></a></li>
-							</ul>
+			<div class="project_section_2 layout_padding">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-3 col-sm-6">
+							<div class="icon_1"><img src="images/icon-3.png"></div>
+							<h3 class="accounting_text_1">1000+</h3>
+							<p class="yers_text">Years of Business</p>
 						</div>
-					</div>
-					<div class="col-sm-3">
-						<img src="images/img-8.png" class="image_7">
-						<p class="readable_text">Content</p>
-						<p class="readable_text_1">suivez-nous</p>
-						<div class="social_icon">
-							<ul>
-								<li><a href="#"><img src="images/fb-icon.png"></a></li>
-								<li><a href="#"><img src="images/twitter-icon.png"></a></li>
-								<li><a href="#"><img src="images/linkedin-icon.png"></a></li>
-							</ul>
+						<div class="col-lg-3 col-sm-6">
+							<div class="icon_1"><img src="images/icon-4.png"></div>
+							<h3 class="accounting_text_1">20000+</h3>
+							<p class="yers_text">Projects Delivered</p>
 						</div>
-					</div>
-					<div class="col-sm-3">
-						<img src="images/img-9.png" class="image_7">
-						<p class="readable_text">Readable</p>
-						<p class="readable_text_1">suivez-nous</p>
-						<div class="social_icon">
-							<ul>
-								<li><a href="#"><img src="images/fb-icon.png"></a></li>
-								<li><a href="#"><img src="images/twitter-icon.png"></a></li>
-								<li><a href="#"><img src="images/linkedin-icon.png"></a></li>
-							</ul>
+						<div class="col-lg-3 col-sm-6">
+							<div class="icon_1"><img src="images/icon-2.png"></div>
+							<h3 class="accounting_text_1">10000+</h3>
+							<p class="yers_text">Satisfied Customers</p>
 						</div>
-					</div>
-					<div class="col-sm-3">
-						<img src="images/img-10.png" class="image_7">
-						<p class="readable_text">Content</p>
-						<p class="readable_text_1">suivez-nous</p>
-						<div class="social_icon">
-							<ul>
-								<li><a href="#"><img src="images/fb-icon.png"></a></li>
-								<li><a href="#"><img src="images/twitter-icon.png"></a></li>
-								<li><a href="#"><img src="images/linkedin-icon.png"></a></li>
-							</ul>
+						<div class="col-lg-3 col-sm-6">
+							<div class="icon_1"><img src="images/icon-1.png"></div>
+							<h3 class="accounting_text_1">1500+</h3>
+							<p class="yers_text">Services</p>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-	</div>
-	<!--team section end -->
-	<!--client section start -->
-	<div class="client_section layout_padding">
-		<div class="container">
-			<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-				<ol class="carousel-indicators">
-					<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-					<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-					<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-				</ol>
-				<div class="carousel-inner">
-					<div class="carousel-item active">
-						<h1 class="what_taital">what is syas our clients</h1>
-						<div class="client_section_2 layout_padding">
-							<ul>
-								<li><img src="images/round-1.png" class="round_1"></li>
-								<li><img src="images/img-11.png" class="image_11"></li>
-								<li><img src="images/round-2.png" class="round_2"></li>
-							</ul>
-							<p class="dummy_text">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem</p>
-						</div>
-					</div>
-					<div class="carousel-item">
-						<h1 class="what_taital">what is syas our clients</h1>
-						<div class="client_section_2 layout_padding">
-							<ul>
-								<li><img src="images/round-1.png" class="round_1"></li>
-								<li><img src="images/img-11.png" class="image_11"></li>
-								<li><img src="images/round-2.png" class="round_2"></li>
-							</ul>
-							<p class="dummy_text">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem</p>
-						</div>
-					</div>
-					<div class="carousel-item">
-						<h1 class="what_taital">what is syas our clients</h1>
-						<div class="client_section_2 layout_padding">
-							<ul>
-								<li><img src="images/round-1.png" class="round_1"></li>
-								<li><img src="images/img-11.png" class="image_11"></li>
-								<li><img src="images/round-2.png" class="round_2"></li>
-							</ul>
-							<p class="dummy_text">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem</p>
+			<!--project section end -->
+			<!--team section start -->
+			<div class="team_section layout_padding">
+				<div class="container">
+					<h1 class="what_taital">Notre groupe</h1>
+					<p class="what_text_1">It is a long established fact that a reader will be distracted by the readable content of a
+					</p>
+					<div class="team_section_2 layout_padding">
+						<div class="row">
+							<div class="col-sm-3">
+								<img src="images/img-7.png" class="image_7">
+								<p class="readable_text">Readable</p>
+								<p class="readable_text_1">suivez-nous</p>
+								<div class="social_icon">
+									<ul>
+										<li><a href="#"><img src="images/fb-icon.png"></a></li>
+										<li><a href="#"><img src="images/twitter-icon.png"></a></li>
+										<li><a href="#"><img src="images/linkedin-icon.png"></a></li>
+									</ul>
+								</div>
+							</div>
+							<div class="col-sm-3">
+								<img src="images/img-8.png" class="image_7">
+								<p class="readable_text">Content</p>
+								<p class="readable_text_1">suivez-nous</p>
+								<div class="social_icon">
+									<ul>
+										<li><a href="#"><img src="images/fb-icon.png"></a></li>
+										<li><a href="#"><img src="images/twitter-icon.png"></a></li>
+										<li><a href="#"><img src="images/linkedin-icon.png"></a></li>
+									</ul>
+								</div>
+							</div>
+							<div class="col-sm-3">
+								<img src="images/img-9.png" class="image_7">
+								<p class="readable_text">Readable</p>
+								<p class="readable_text_1">suivez-nous</p>
+								<div class="social_icon">
+									<ul>
+										<li><a href="#"><img src="images/fb-icon.png"></a></li>
+										<li><a href="#"><img src="images/twitter-icon.png"></a></li>
+										<li><a href="#"><img src="images/linkedin-icon.png"></a></li>
+									</ul>
+								</div>
+							</div>
+							<div class="col-sm-3">
+								<img src="images/img-10.png" class="image_7">
+								<p class="readable_text">Content</p>
+								<p class="readable_text_1">suivez-nous</p>
+								<div class="social_icon">
+									<ul>
+										<li><a href="#"><img src="images/fb-icon.png"></a></li>
+										<li><a href="#"><img src="images/twitter-icon.png"></a></li>
+										<li><a href="#"><img src="images/linkedin-icon.png"></a></li>
+									</ul>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-	</div>
-	<!--client section end -->
-{% endblock %}
+			<!--team section end -->
+			<!--client section start -->
+			<div class="client_section layout_padding">
+				<div class="container">
+					<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+						<ol class="carousel-indicators">
+							<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+							<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+							<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+						</ol>
+						<div class="carousel-inner">
+							<div class="carousel-item active">
+								<h1 class="what_taital">what is syas our clients</h1>
+								<div class="client_section_2 layout_padding">
+									<ul>
+										<li><img src="images/round-1.png" class="round_1"></li>
+										<li><img src="images/img-11.png" class="image_11"></li>
+										<li><img src="images/round-2.png" class="round_2"></li>
+									</ul>
+									<p class="dummy_text">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem</p>
+								</div>
+							</div>
+							<div class="carousel-item">
+								<h1 class="what_taital">what is syas our clients</h1>
+								<div class="client_section_2 layout_padding">
+									<ul>
+										<li><img src="images/round-1.png" class="round_1"></li>
+										<li><img src="images/img-11.png" class="image_11"></li>
+										<li><img src="images/round-2.png" class="round_2"></li>
+									</ul>
+									<p class="dummy_text">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem</p>
+								</div>
+							</div>
+							<div class="carousel-item">
+								<h1 class="what_taital">what is syas our clients</h1>
+								<div class="client_section_2 layout_padding">
+									<ul>
+										<li><img src="images/round-1.png" class="round_1"></li>
+										<li><img src="images/img-11.png" class="image_11"></li>
+										<li><img src="images/round-2.png" class="round_2"></li>
+									</ul>
+									<p class="dummy_text">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--client section end -->
+		{% endblock %}
+
+		{% block linkJS %}
+			<script src="{{asset('js/currency.js')}} "></script>
+		{% endblock %}
