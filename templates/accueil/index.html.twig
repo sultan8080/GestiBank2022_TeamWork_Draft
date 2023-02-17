@@ -3,7 +3,8 @@
 {% endblock %}
 {% block body %}
 	<!--about section start -->
-		<div class="services_section layout_padding"> <div class="container">
+	<div class="services_section layout_padding">
+		<div class="container">
 			<div class="row">
 				<div class="col-md-8">
 					<h1 class="services_taital">Bienvenue</h1>
@@ -30,8 +31,8 @@
 			<div class="what_we_do_section_2">
 				<div class="row">
 					{% for bank_service in ListeBankService %}
-						<div class="col-lg-3 col-sm-6 my-4">	
-								<div class="box_main">
+						<div class="col-lg-3 col-sm-6 my-4">
+							<div class="box_main">
 								<div class="icon_1"><img src="{{asset('uploads/logo_bs/'~ bank_service.logo ~'')}}"></div>
 								<h3 class="accounting_text mt-2">{{ bank_service.titre }}</h3>
 								<p class="lorem_text">{{ bank_service.description|u.truncate (50, ' ...', false) }}</p>
@@ -48,6 +49,64 @@
 		</div>
 	</div>
 	<!--services section end -->
+	<div id="conversion-section" class="services_section layout_padding">
+		<div class="container">
+			<div class="row justify-content-between">
+				<div class="col-md-4">
+					<h1 class="services_taital">Conversion de devises</h1>
+					<p class="services_text">
+						Merci d'indiquer la devise départ et a devise d'arrivée ainsi que le montant à convertir
+					</p>
+					<div class="moremore_bt">
+						<a href="#">Voir plus
+						</a>
+					</div>
+
+				</div>
+				<div class="col-md-6">
+					<form action="#">
+						<div class="mb-3 mt-3">
+
+							<label for="exampleFormControlInput1" class="form-label ps-2">
+								ENTREZ VOTRE MONTANT</label>
+							<input type="Text" class="form-control border rounded" id="inputAmount" value="1" placeholder="Entrez votre montant à convertir">
+						</div>
+						<div class="mb-3 d-flex justify-content-between align-items-center">
+							<div class="deMontant">
+								<div class="pt-3 ps-2">
+									DE
+								</div>
+								<div class="d-flex justify-content-end align-items-center border rounded ps-2">
+									<img style="max-width:30px" class="img-fluid mr-2" src="https://flagcdn.com/48x36/fr.png" alt="Drapeau">
+									<select class="form-select border-0"></select>
+								</div>
+							</div>
+							<div class="text-center">
+								<div id="icon" class="h2 mt-4">
+									<i class="fas fa-exchange-alt"></i>
+								</div>
+							</div>
+
+							<div class="toMontant">
+								<div class="pt-3 ps-2">
+									À
+								</div>
+								<div class="d-flex justify-content-end align-items-center border rounded ps-2">
+									<img style="max-width:30px" class="img-fluid mr-2" src="https://flagcdn.com/48x36/us.png" alt="Drapeau">
+									<select class="form-select border-0"></select>
+								</div>
+							</div>
+						</div>
+						<div id="tauxConvertir" class="mt-4 ps-2 h6">Conversion en cours</div>
+						<div id="convertir" class="btn btn-primary mt-5 w-100">CONVERTIR</div>
+						<small class="text-center"> Taux de change d'aujourd'hui :
+							<strong>{{ "now"|date("d/m/Y") }}<strong></small>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<!--project section start -->
 	<div class="project_section layout_padding">
 		<div class="container">
