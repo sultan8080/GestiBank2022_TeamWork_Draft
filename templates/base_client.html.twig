@@ -137,18 +137,28 @@
 								<i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
 							</a>
 						</li>
+
+
 						<li class="nav-item">
 							<a class="nav-link" href="{{path('app_dashboardClient')}}">
-								<span class="menu-title">Tableau de bord</span>
+								<span class="menu-title">Tableau de bord
+								</span>
 								<i class="mdi mdi-home menu-icon"></i>
 							</a>
 						</li>
 
+						{# <li class="nav-item">
+							<a class="nav-link" href="{{path('app_dashboardClient')}}">
+								<span class="menu-title">Tableau de bord</span>
+								<i class="mdi mdi-home menu-icon"></i>
+							</a>
+						</li> #}
+
 						<li class="nav-item">
 							<a class="nav-link" href="{{path('app_dashboardClient_listMessage')}}">
-								<span class="menu-title">Mes Messages
+								<span class="menu-title">Boite de reception
 								</span>
-								<i class="mdi mdi-contacts menu-icon"></i>
+								<i class="mdi mdi-message menu-icon"></i>
 							</a>
 						</li>
 
@@ -156,7 +166,7 @@
 							<a class="nav-link" href="{{path('app_dashboardClient_operations')}}">
 								<span class="menu-title">Mes Opérations
 								</span>
-								<i class="mdi mdi-contacts menu-icon"></i>
+								<i class="mdi mdi-transcribe-close menu-icon"></i>
 							</a>
 						</li>
 
@@ -165,7 +175,7 @@
 							<a class="nav-link" href="{{path('app_dashboardClient_listDemandes')}}">
 								<span class="menu-title">Mes Demandes
 								</span>
-								<i class="mdi mdi-contacts menu-icon"></i>
+								<i class="mdi mdi-garage menu-icon"></i>
 							</a>
 						</li>
 
@@ -173,7 +183,7 @@
 							<a class="nav-link" href="{{path('app_dashboardClientNotifications')}}">
 								<span class="menu-title">Mes Notifications
 								</span>
-								<i class="mdi mdi-contacts menu-icon"></i>
+								<i class="mdi mdi-bell  menu-icon"></i>
 							</a>
 						</li>
 
@@ -182,31 +192,25 @@
 							<a class="nav-link" href="{{path('app_dashboardClientProfile')}}">
 								<span class="menu-title">Mon Profile
 								</span>
-								<i class="mdi mdi-contacts menu-icon"></i>
+								<i class="mdi mdi-account-circle menu-icon"></i>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="{{path('app_dashboardClientProfile')}}">
+								<span class="menu-title">Créer un nouveau compte
+								</span>
+								<i class="mdi mdi-bank menu-icon"></i>
 							</a>
 						</li>
 
-<<<<<<< HEAD
 
-						{# 
-																														<li class="nav-item sidebar-actions">
-																															<span class="">
-																															<a class="btn btn-block btn-lg btn-primary mt-4" href="{{path('app_dashboardClienNewDemande')}}">
-																																<span class="text-white">Créer un compte</span>
-																															</a>
-																															</span>
-																														</li> #}
-=======
-						
-
-						<li class="nav-item sidebar-actions">
+					<li class="nav-item sidebar-actions">
 							<span class="">
 							<a class="btn btn-block btn-lg btn-primary mt-4" href="{{path('app_dashboardClienNewDemande')}}">
 								<span class="text-white">Déconnexion</span>
 							</a>
 							</span>
 						</li>
->>>>>>> f00da975668104545641c147c9e290d5db9beda4
 					</ul>
 				</nav>
 				<!-- partial -->
@@ -238,4 +242,3 @@
 
 		</body>
 	</html>
-
