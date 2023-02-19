@@ -19,7 +19,7 @@ let listPays = {
     "UYU": "UY", "UZS": "UZ", "VEF": "VE", "VND": "VN", "VUV": "VU", "YER": "YE", "ZAR": "ZA", "ZMK": "ZM", "ZWD": "ZW"
 };
 
-const selectList = document.querySelectorAll("form .form-select");
+const selectList = document.querySelectorAll(".curreny_form select");
 const fromDevise = document.querySelector(".deMontant select");
 const toDevise = document.querySelector(".toMontant select");
 const convertirButton = document.getElementById("convertir");

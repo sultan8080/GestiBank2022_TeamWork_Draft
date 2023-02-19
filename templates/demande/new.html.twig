@@ -1,14 +1,19 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Demande{% endblock %}
+{% block title %}New Demande
+{% endblock %}
 
-{% block body %}
+{% block form_title %}
+	<div class="text-center mt-5 h5">
+		Remplir le formulaire
+	</div>
+{% endblock %}
+{% block MainBody %}
 
-<section class="container">
-    <h1 class="text-center">Create new Demande</h1>
+	<section class="container col-md-6 mt-5">
 
-    {{ include('demande/_form.html.twig') }}
-</section>
 
-    {# <a href="{{ path('app_demande_index') }}">back to list</a> #}
+		{{ include('demande/_form.html.twig') }}
+	</section>
+
 {% endblock %}

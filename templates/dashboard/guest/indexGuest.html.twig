@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
-{% block title %}Bienvenue
+{% block title %}Client-Guest
 {% endblock %}
-{% block body %}
+{% block MainBody %}
 	<!--about section start -->
 		<div class="services_section layout_padding"> <div class="container">
 			<div class="row">
@@ -10,8 +10,8 @@
 					<p class="services_text">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it
 					</p>
 					<div class="moremore_bt">
-						<a href="#">Voir plus
-						</a>
+						{# <a href="#">Voir plus
+						</a> #}
                         <a class="nav-link" href="{{path('app_demande_new')}}">Ouvrir un compte</a>
 					</div>
 				</div>
@@ -50,5 +50,63 @@
 	</div> 
 	<!--services section end -->
 	
+	<!--services section end -->
+	<div id="conversion-section" class="services_section layout_padding">
+		<div class="container">
+			<div class="row justify-content-between">
+				<div class="col-md-4">
+					<h1 class="services_taital">Conversion de devises</h1>
+					<p class="services_text">
+						Merci d'indiquer la devise départ et a devise d'arrivée ainsi que le montant à convertir
+					</p>
+					<div class="moremore_bt">
+						<a href="#">Voir plus
+						</a>
+					</div>
+
+				</div>
+				<div class="col-md-6">
+					<form action="#">
+						<div class="mb-3 mt-3">
+
+							<label for="exampleFormControlInput1" class="form-label ps-2">
+								ENTREZ VOTRE MONTANT</label>
+							<input type="Text" class="form-control border rounded" id="inputAmount" value="1" placeholder="Entrez votre montant à convertir">
+						</div>
+						<div class="curreny_form mb-3 d-flex justify-content-between align-items-center">
+							<div class="deMontant">
+								<div class="pt-3 ps-2">
+									DE
+								</div>
+								<div class="d-flex justify-content-end align-items-center border rounded ps-2">
+									<img style="max-width:30px" class="img-fluid mr-2" src="https://flagcdn.com/48x36/fr.png" alt="Drapeau">
+									<select class="form-select border-0"></select>
+								</div>
+							</div>
+							<div class="text-center">
+								<div id="icon" class="h2 mt-4">
+									<i class="fas fa-exchange-alt"></i>
+								</div>
+							</div>
+
+							<div class="toMontant">
+								<div class="pt-3 ps-2">
+									À
+								</div>
+								<div class="d-flex justify-content-end align-items-center border rounded ps-2">
+									<img style="max-width:30px" class="img-fluid mr-2" src="https://flagcdn.com/48x36/us.png" alt="Drapeau">
+									<select class="form-select border-0"></select>
+								</div>
+							</div>
+						</div>
+						<div id="tauxConvertir" class="mt-4 ps-2 h6">Conversion en cours</div>
+						<div id="convertir" class="btn btn-primary mt-5 w-100">CONVERTIR</div>
+						<small class="text-center"> Taux de change d'aujourd'hui :
+							<strong>{{ "now"|date("d/m/Y") }}<strong></small>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
 	
 {% endblock %}

@@ -145,6 +145,7 @@ var lightColor = getComputedStyle(document.body).getPropertyValue('--light');
   });
 })(jQuery);
 
+
 let navlist = document.querySelectorAll(".menu-title");
 
 

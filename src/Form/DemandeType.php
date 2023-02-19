@@ -17,6 +17,7 @@ class DemandeType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+       
             ->add('nom')
             ->add('prenom')
             ->add('email')
@@ -36,7 +37,7 @@ class DemandeType extends AbstractType
                     'image/png', 
                     'image/jpeg', 
                     ], 
-                        'mimeTypesMessage' => 'Please upload a valid picture format', 
+                        'mimeTypesMessage' => 'Veuillez télécharger un format d\'image valide', 
                 ]) 
                 ], 
             ])
