@@ -39,7 +39,7 @@ class DashboardController extends AbstractController
     public function indexClient(ManagerRegistry $doctrine,CompteRepository $compteRepository, TransactionRepository $transactionRepository): Response
     {
         // $user = $this->getUser()->getId();
-        $user = $this->getUser()->getId();
+        $user = $this->getUser()->getID();
         $compte = $compteRepository->findBy(array('idUser' => $user));
 
         if($compte){
