@@ -46,7 +46,6 @@ class DemandeController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             //upload des fichiers
             $photoFile = $form->get('photo')->getData();
             $identiteFile = $form->get('identite')->getData();

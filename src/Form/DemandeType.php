@@ -18,9 +18,6 @@ class DemandeType extends AbstractType
     {
         $builder
        
-            ->add('nom')
-            ->add('prenom')
-            ->add('email')
             ->add('photo', FileType::class, [ 
                 'label' => 'Photo de profil (png/jpg)',
                 // unmapped means that this field is not associated to any entity property 
